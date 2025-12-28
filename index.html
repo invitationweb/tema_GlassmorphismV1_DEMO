@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Wedding - Slide Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+        .font-cursive { font-family: 'Alex Brush', cursive; }
+
+        section {
+            min-height: 100vh; width: 100%; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            background-attachment: fixed; background-position: center;
+            background-repeat: no-repeat; background-size: cover;
+            padding: 60px 20px;
+        }
+
+        /* Background per Slide */
+        .bg-slide-1 { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80'); }
+        .bg-slide-2 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80'); }
+        .bg-slide-3 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&q=80'); }
+        .bg-slide-4 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80'); }
+        .bg-slide-5 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80'); }
+        .bg-slide-6 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1465495910483-0d7547849e7d?auto=format&fit=crop&q=80'); }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px;
+            padding: 40px; color: white; width: 100%; max-width: 600px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); text-align: center;
+        }
+
+        #cover {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80') center/cover;
+            transition: 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+        .cover-off { transform: translateY(-100%); }
+
+        #music-control {
+            position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: white; color: black; display: none;
+            align-items: center; justify-content: center; cursor: pointer;
+        }
+
+        .swiper { width: 100%; max-width: 400px; height: 300px; }
+        .swiper-slide img { border-radius: 20px; width: 100%; height: 100%; object-fit: cover; }
+    </style>
+</head>
+<body class="bg-black">
+
+    <audio id="bgMusic" loop src="music.mp3"></audio>
+
+    <div id="music-control" onclick="toggleMusic()">
+        <i id="music-icon" class="fa-solid fa-compact-disc fa-spin"></i>
+    </div>
+
+    <div id="cover">
+        <div class="text-center p-6 text-white" data-aos="zoom-in">
+            <h2 class="uppercase tracking-[0.4em] text-sm text-gray-300 mb-4">The Wedding of</h2>
+            <h1 class="text-7xl font-cursive mb-8">Aris & Amira</h1>
+            <p class="text-xs tracking-widest uppercase mb-2">Kepada Bapak/Ibu/Saudara/i</p>
+            <h3 class="text-xl font-bold mb-8">Tamu Undangan</h3>
+            <button onclick="openInvitation()" class="bg-white text-black px-10 py-4 rounded-full font-bold shadow-2xl hover:scale-110 transition duration-300">
+                <i class="fa-solid fa-envelope-open mr-2"></i> BUKA UNDANGAN
+            </button>
+        </div>
+    </div>
+
+    <section class="bg-slide-1">
+        <div class="glass-box" data-aos="fade-up">
+            <img src="foto (1).jpg" class="w-40 h-40 rounded-full border-4 border-white/50 mx-auto object-cover mb-6 shadow-2xl">
+            <h2 class="text-5xl font-cursive mb-4 text-center">Aris & Amira</h2>
+            <p class="tracking-widest opacity-80 uppercase text-sm">Minggu, 25 Desember 2025</p>
+        </div>
+    </section>
+
+    <section class="bg-slide-2">
+        <div class="glass-box" data-aos="zoom-in">
+            <h3 class="font-cursive text-4xl mb-8">Waktu Acara</h3>
+            <div class="grid grid-cols-4 gap-2 mb-10">
+                <div class="bg-white/10 p-3 rounded-2xl"><span id="days" class="text-xl font-bold block">00</span><span class="text-[10px]">Hari</span></div>
+                <div class="bg-white/10 p-3 rounded-2xl"><span id="hours" class="text-xl font-bold block">00</span><span class="text-[10px]">Jam</span></div>
+                <div class="bg-white/10 p-3 rounded-2xl"><span id="mins" class="text-xl font-bold block">00</span><span class="text-[10px]">Menit</span></div>
+                <div class="bg-white/10 p-3 rounded-2xl"><span id="secs" class="text-xl font-bold block">00</span><span class="text-[10px]">Detik</span></div>
+            </div>
+            <div class="space-y-4 text-sm">
+                <p><strong>AKAD:</strong> 08.00 - 10.00 WIB</p>
+                <p><strong>RESEPSI:</strong> 11.00 - Selesai</p>
+                <p class="opacity-70">Masjid Raya & Ballroom Hotel</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-slide-3">
+        <div class="glass-box" data-aos="fade-right">
+            <h3 class="font-cursive text-4xl mb-6">Lokasi Acara</h3>
+            <div class="w-full h-64 rounded-2xl overflow-hidden border border-white/20 mb-6">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.666422329193!2d106.8249641!3d-6.1753924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2db40393d%3A0x48ad2d0e7f79f32e!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <button class="bg-white text-black px-6 py-2 rounded-full text-sm font-bold">Petunjuk Jalan</button>
+        </div>
+    </section>
+
+    <section class="bg-slide-4">
+        <div class="glass-box" data-aos="fade-up">
+            <h3 class="text-4xl font-cursive mb-8">Momen Bahagia</h3>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="foto (1).jpg"></div>
+                    <div class="swiper-slide"><img src="foto (2).jpg"></div>
+                    <div class="swiper-slide"><img src="foto (3).jpg"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-slide-5">
+        <div class="glass-box" data-aos="zoom-in">
+            <h3 class="text-4xl font-cursive mb-8">Our Memories</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <img src="foto (5).jpg" class="rounded-2xl h-40 w-full object-cover shadow-lg" data-aos="flip-left">
+                <img src="foto (6).jpg" class="rounded-2xl h-40 w-full object-cover shadow-lg" data-aos="flip-right">
+                <img src="foto (4).jpg" class="rounded-2xl h-40 w-full object-cover shadow-lg" data-aos="flip-left" data-aos-delay="200">
+                <img src="foto (5).jpg" class="rounded-2xl h-40 w-full object-cover shadow-lg" data-aos="flip-right" data-aos-delay="200">
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-slide-6">
+        <div class="glass-box" data-aos="slide-up">
+            <h3 class="text-4xl font-cursive mb-6">Ucapan & Gift</h3>
+            <div class="p-4 bg-white/10 rounded-2xl border border-white/20 mb-6">
+                <p class="text-[10px] uppercase">Wedding Gift (BCA)</p>
+                <p class="text-lg font-bold tracking-widest">123-456-7890</p>
+                <p class="text-[10px] italic opacity-70">a.n Aris Setiawan</p>
+            </div>
+            <form id="formUcapan" class="space-y-3 mb-6">
+                <input type="text" id="nama" placeholder="Nama" class="w-full p-2 rounded-lg bg-white/10 border border-white/20 outline-none text-sm">
+                <textarea id="pesan" placeholder="Ucapan" class="w-full p-2 rounded-lg bg-white/10 border border-white/20 h-20 outline-none text-sm"></textarea>
+                <button type="submit" class="w-full bg-white text-black py-2 rounded-lg font-bold text-sm">KIRIM</button>
+            </form>
+            <div id="listUcapan" class="text-left space-y-3 max-h-32 overflow-y-auto pr-2 text-[11px]"></div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center text-white bg-black">
+        <p class="font-cursive text-2xl">Aris & Amira</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: false });
+        const swiper = new Swiper(".mySwiper", { effect: "fade", autoplay: { delay: 3000 }, pagination: { el: ".swiper-pagination" } });
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('music-control');
+        
+        function openInvitation() {
+            document.getElementById('cover').classList.add('cover-off');
+            music.play();
+            musicBtn.style.display = 'flex';
+            document.body.style.overflow = 'auto';
+            setTimeout(() => { AOS.refresh(); }, 500);
+        }
+
+        function toggleMusic() {
+            if (music.paused) { music.play(); document.getElementById('music-icon').classList.add('fa-spin'); }
+            else { music.pause(); document.getElementById('music-icon').classList.remove('fa-spin'); }
+        }
+
+        document.body.style.overflow = 'hidden';
+
+        const target = new Date("Dec 25, 2025 08:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = target - now;
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }, 1000);
+
+        document.getElementById('formUcapan').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const html = `<div class="bg-white/10 p-2 rounded-lg border border-white/5 mb-1">
+                            <p class="font-bold">${document.getElementById('nama').value}</p>
+                            <p class="opacity-70">${document.getElementById('pesan').value}</p>
+                          </div>`;
+            document.getElementById('listUcapan').insertAdjacentHTML('afterbegin', html);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
